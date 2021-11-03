@@ -1,7 +1,7 @@
 
 
 public class NBody {
-    public static String imageToDraw = "images/starfield.jpg";
+    private static String imageToDraw = "images/starfield.jpg";
     /*Given a file name, it should return a double corresponding
     to the radius of the universe in that file,
     e.g. readRadius("./data/planets.txt") should return 2.50e+11.*/

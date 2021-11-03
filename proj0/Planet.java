@@ -1,7 +1,7 @@
 
 
 public class Planet {
-    public static final double G = 6.67E-11f;
+    private static final double G = 6.67E-11f;
 
     public double xxPos; //Its current x position
     public double yyPos;//Its current y position
