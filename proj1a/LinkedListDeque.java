@@ -5,9 +5,9 @@ public class LinkedListDeque<T> {
 
     public class Node {
 
-        public Node prev;
-        public T item;
-        public Node next;
+        private Node prev;
+        private T item;
+        private Node next;
 
         public Node(Node p, T i, Node n) {
             prev = p;
@@ -122,20 +122,20 @@ public class LinkedListDeque<T> {
         return result.item;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-
-        T a = (T) new Integer(13);
-        sentinel = new Node(null, a, null);
-        sentinel.next = sentinel;
-        sentinel.prev = sentinel;
-        size = 0;
-
-        Node res = other.sentinel;
-        for (int i = 0; i < other.size(); i++) {
-
-            addLast((T) (other.get(i)));
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//
+//        T a = (T) new Integer(13);
+//        sentinel = new Node(null, a, null);
+//        sentinel.next = sentinel;
+//        sentinel.prev = sentinel;
+//        size = 0;
+//
+//        Node res = other.sentinel;
+//        for (int i = 0; i < other.size(); i++) {
+//
+//            addLast((T) (other.get(i)));
+//        }
+//    }
 
     //Same as get, but uses recursion.
     public T getRecursive(int index) {
@@ -147,7 +147,7 @@ public class LinkedListDeque<T> {
 
     }
 
-    public T getRecursiveHelper(int index, Node res) {
+    private T getRecursiveHelper(int index, Node res) {
         if (index == 0) {
             return res.item;
         }

@@ -3,7 +3,7 @@ public class ArrayDeque<T> {
 
     private T[] items;
     private int size;
-    public static final int CAPACITY = 8;
+    private static final int CAPACITY = 8;
     private int first, last;
 
 
@@ -12,12 +12,12 @@ public class ArrayDeque<T> {
         first = last = size = 0;
     }
 
-    public boolean isFull() {
+    private boolean isFull() {
         return (size == items.length);
 
     }
 
-    public void resize(int n) {
+    private void resize(int n) {
         T[] mid = (T[]) new Object[n];
         for (int i = first, j = 0; i < items.length; i++, j++) {
             mid[j] = items[i];
@@ -96,6 +96,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+
         T res = items[first];
         first = increment(first);
         size--;
@@ -119,18 +120,18 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if (isEmpty()) {
+        if (isEmpty() || index >= size) {
             return null;
         }
-        return items[(first + index) % items.length];
+        return items[(first + index - 1) % items.length];
     }
 
-    public ArrayDeque(ArrayDeque other){
-        this.items = (T[]) new Object[other.items.length];
-        first = other.first;
-        last = other.last;
-        size = other.size();
-        System.arraycopy(other.items,0,items,0,other.items.length);
-
-    }
+//    public ArrayDeque(ArrayDeque other) {
+//        this.items = (T[]) new Object[other.items.length];
+//        first = other.first;
+//        last = other.last;
+//        size = other.size();
+//        System.arraycopy(other.items, 0, items, 0, other.items.length);
+//
+//    }
 }
