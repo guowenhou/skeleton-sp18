@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
     }
 
     private boolean isFull() {
-        return (size == items.length);
+        return (this.size == items.length);
 
     }
 
@@ -50,7 +50,7 @@ public class ArrayDeque<T> {
 
         first = decrement(first);
         items[first] = item;
-        size++;
+        this.size++;
 
     }
 
@@ -62,12 +62,12 @@ public class ArrayDeque<T> {
 
         last = decrement(last);
         items[last] = item;
-        size++;
+        this.size++;
 
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return this.size == 0;
     }
 
     public int size() {
@@ -120,7 +120,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if (isEmpty() || index >= size) {
+        if (isEmpty() || index >= size || index < 0) {
             return null;
         }
         return items[(first + index - 1) % items.length];
@@ -135,3 +135,5 @@ public class ArrayDeque<T> {
 //
 //    }
 }
+
+
