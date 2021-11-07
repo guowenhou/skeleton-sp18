@@ -60,8 +60,8 @@ public class ArrayDeque<T> {
             resize(2 * items.length);
         }
 
-        last = decrement(last);
         items[last] = item;
+        last = increment(last);
         this.size++;
 
     }
@@ -110,8 +110,9 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T res = items[last];
         last = decrement(last);
+        T res = items[last];
+
         size--;
         if (items.length > 2 * CAPACITY && 4 * size < items.length) {
             resize((int) (items.length * 0.5));
