@@ -19,13 +19,21 @@ public class ArrayDeque<T> {
 
     private void resize(int n) {
         T[] mid = (T[]) new Object[n];
-        for (int i = first, j = 0; i < items.length; i++, j++) {
-            mid[j] = items[i];
+        if (last > first) {
+            System.arraycopy(items, first, mid, 0, size);
+        } else {
+            System.arraycopy(items, first, mid, 0, items.length - first);
+            System.arraycopy(items, 0, mid, items.length - first, last);
         }
-        for (int i = 0, j = items.length - first; i < last; i++, j++) {
 
-            mid[j] = items[i];
-        }
+
+//        for (int i = first, j = 0; i < items.length; i++, j++) {
+//            mid[j] = items[i];
+//        }
+//        for (int i = 0, j = items.length - first; i < last; i++, j++) {
+//
+//            mid[j] = items[i];
+//        }
 
         items = mid;
         first = 0;
@@ -124,7 +132,7 @@ public class ArrayDeque<T> {
         if (isEmpty() || index >= size || index < 0) {
             return null;
         }
-        return items[(first + index ) % items.length];
+        return items[(first + index) % items.length];
     }
 
 //    public ArrayDeque(ArrayDeque other) {
