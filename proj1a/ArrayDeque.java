@@ -124,7 +124,7 @@ public class ArrayDeque<T> {
         if (isEmpty() || index >= size || index < 0) {
             return null;
         }
-        return items[(first + index - 1) % items.length];
+        return items[(first + index ) % items.length];
     }
 
 //    public ArrayDeque(ArrayDeque other) {
