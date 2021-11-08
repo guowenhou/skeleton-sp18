@@ -15,11 +15,11 @@ public class TestOffByOne {
     @Test
     public void testEqualChars() {
         boolean res = offByOne.equalChars('x', 'y');
-        boolean ans = false;
+        boolean ans = true;
         assertEquals(ans, res);
 
         boolean res2 = offByOne.equalChars('a', 'a');
-        boolean ans2 = true;
+        boolean ans2 = false;
         assertEquals(ans2, res2);
 
 

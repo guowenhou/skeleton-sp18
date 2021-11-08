@@ -2,8 +2,7 @@ public class OffByN implements CharacterComparator {
 
     private int Error;
 
-    OffByN(int N) {
-
+    public OffByN(int N) {
         this.Error = N;
     }
 
