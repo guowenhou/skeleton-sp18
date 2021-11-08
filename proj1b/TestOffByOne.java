@@ -26,6 +26,7 @@ public class TestOffByOne {
         boolean ans3 = false;
         assertEquals(ans, res);
 
+
         boolean res4 = offByOne.equalChars('A', 'a');
         boolean ans4 = false;
         assertEquals(ans2, res2);
