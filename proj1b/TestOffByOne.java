@@ -22,6 +22,14 @@ public class TestOffByOne {
         boolean ans2 = false;
         assertEquals(ans2, res2);
 
+        boolean res3 = offByOne.equalChars('@', '*');
+        boolean ans3 = false;
+        assertEquals(ans, res);
+
+        boolean res4 = offByOne.equalChars('A', 'a');
+        boolean ans4 = false;
+        assertEquals(ans2, res2);
+
 
     }
 

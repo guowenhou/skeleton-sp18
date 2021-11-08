@@ -30,8 +30,8 @@ public class TestPalindrome {
         boolean ans2 = false;
         assertEquals(ans2, flag2);
 
-        boolean flag3 = palindrome.isPalindrome("sdge");
-        boolean ans3 = false;
+        boolean flag3 = palindrome.isPalindrome("noon");
+        boolean ans3 = true;
         assertEquals(ans3, flag3);
 
 
@@ -48,8 +48,8 @@ public class TestPalindrome {
         boolean ans2 = false;
         assertEquals(ans2, flag2);
 
-        boolean flag3 = palindrome.isPalindrome("sdge", offByOne);
-        boolean ans3 = false;
+        boolean flag3 = palindrome.isPalindrome("ab", offByOne);
+        boolean ans3 = true;
         assertEquals(ans3, flag3);
 
 
