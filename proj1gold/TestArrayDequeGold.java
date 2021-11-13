@@ -7,24 +7,24 @@ public class TestArrayDequeGold {
     @Test
     public void test() {
 
-        StudentArrayDeque<Integer> sad = new StudentArrayDeque<Integer>();
-        ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<Integer>();
+        StudentArrayDeque<Integer> sad = new StudentArrayDeque<>();
+        ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
         StringBuilder message = new StringBuilder();
         int size = 0;
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 5000; i++) {
             double numberBetweenZeroAndOne = StdRandom.uniform();
             if (numberBetweenZeroAndOne < 0.25) {
-                sad.addFirst((new Integer(i)));
-                ads.addFirst((new Integer(i)));
+                sad.addFirst(i);
+                ads.addFirst(i);
                 size++;
-                message.append("addFirst( " + i + ")\n");
+                message.append("addFirst(" + i + ")\n");
                 assertEquals(message.toString(), sad.get(0), ads.get(0));
             }
             if (numberBetweenZeroAndOne < 0.5) {
-                sad.addLast((new Integer(i)));
-                ads.addLast((new Integer(i)));
+                sad.addLast(i);
+                ads.addLast(i);
                 size++;
-                message.append("addLast( " + i + ")\n");
+                message.append("addLast(" + i + ")\n");
                 assertEquals(message.toString(),
                         sad.get(size - 1), ads.get(size - 1));
             }
@@ -40,7 +40,7 @@ public class TestArrayDequeGold {
                 message.append("removeFirst \n");
                 assertEquals(message.toString(), act, exp);
             }
-            if (numberBetweenZeroAndOne < 1) {
+            else {
                 if (sad.isEmpty()) {
                     message.append("isEmpty()\n");
                     assertTrue(message.toString(), sad.isEmpty());
@@ -51,12 +51,10 @@ public class TestArrayDequeGold {
                 size--;
                 message.append("removeLast \n");
                 assertEquals(message.toString(), act, exp);
-            } else {
-                message.append("size \n");
-                assertEquals(message.toString(), ads.size(), sad.size());
             }
 
         }
+        System.out.println(message);
 
 
     }
