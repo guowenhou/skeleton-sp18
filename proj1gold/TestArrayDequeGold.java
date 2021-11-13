@@ -11,7 +11,7 @@ public class TestArrayDequeGold {
         ArrayDequeSolution<Integer> ads = new ArrayDequeSolution<>();
         StringBuilder message = new StringBuilder();
         int size = 0;
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 500 ; i++) {
             double numberBetweenZeroAndOne = StdRandom.uniform();
             if (numberBetweenZeroAndOne < 0.25) {
                 sad.addFirst(i);
@@ -54,7 +54,7 @@ public class TestArrayDequeGold {
             }
 
         }
-        System.out.println(message);
+
 
 
     }
