@@ -66,13 +66,13 @@ public class TestSimpleOomage {
 
     @Test
     public void testHashCodeAndEqualsConsistency() {
-        SimpleOomage ooA = new SimpleOomage(5, 10, 20);
-        SimpleOomage ooA2 = new SimpleOomage(5, 10, 20);
+        SimpleOomage ooA = new SimpleOomage(0, 0, 5);
+        SimpleOomage ooA2 = new SimpleOomage(0,5, 0);
         System.out.println(ooA.equals(ooA2));
 
         HashSet<SimpleOomage> hashSet = new HashSet<>();
         hashSet.add(ooA);
-        assertTrue(hashSet.contains(ooA2));
+        assertFalse(hashSet.contains(ooA2));
     }
 
     /* TODO: Uncomment this test after you finish haveNiceHashCode Spread in OomageTestUtility */
