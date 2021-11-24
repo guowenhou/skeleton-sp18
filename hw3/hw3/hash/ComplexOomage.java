@@ -13,7 +13,7 @@ public class ComplexOomage implements Oomage {
     public int hashCode() {
         int total = 0;
         for (int x : params) {
-            total = total * 256;
+            total = total * 256; //256太大了，256的五次方在Java中就等于0了，所以当其超过4位数哈希值就恒定了
             total = total + x;
         }
         return total;
