@@ -109,6 +109,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private void swim(int index) {
         // Throws an exception if index is invalid. DON'T CHANGE THIS LINE.
+
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
@@ -208,21 +209,34 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public void changePriority(T item, double priority) {
-        /* TODO: Your code here! */
-        changePriorityHelper(item, priority, 1);
-        return;
-    }
-    private void changePriorityHelper(T item, double priority,int index){
-        validateSinkSwimArg(index);
-        if (contents[index].item().equals(item)){
-            contents[index].myPriority = priority;
-            sink(index);
-            swim(index);
-            return;
+        for (int i = 1; i <= size; i++) {
+            if (contents[i].myItem.equals(item)) {
+                if (priority > contents[i].myPriority) {
+                    contents[i].myPriority = priority;
+                    sink(i);
+                } else {
+                    contents[i].myPriority = priority;
+                    swim(i);
+                }
+            }
         }
-        changePriorityHelper(item, priority, leftIndex(index));
-        changePriorityHelper(item, priority, rightIndex(index));
     }
+//    public void changePriority(T item, double priority) {
+//        /* TODO: Your code here! */
+//        changePriorityHelper(item, priority, 1);
+//        return;
+//    }
+//    private void changePriorityHelper(T item, double priority,int index){
+//        validateSinkSwimArg(index);
+//        if (contents[index].item().equals(item)){
+//            contents[index].myPriority = priority;
+//            sink(index);
+//            swim(index);
+//            return;
+//        }
+//        changePriorityHelper(item, priority, leftIndex(index));
+//        changePriorityHelper(item, priority, rightIndex(index));
+//    }
 
     /**
      * Prints out the heap sideways. Provided for you.
