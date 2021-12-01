@@ -1,4 +1,8 @@
+import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,7 +32,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int leftIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return 2*i;
     }
 
     /**
@@ -36,7 +40,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int rightIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return i*2+1;
     }
 
     /**
@@ -44,7 +48,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     private static int parentIndex(int i) {
         /* TODO: Your code here! */
-        return 0;
+        return i/2;
     }
 
     /**
@@ -108,7 +112,11 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        while (index > 1 && index == min(index,parentIndex(index)) ) {//子节点小于父节点
+
+            swap(index,parentIndex(index));
+            index = parentIndex(index);
+        }
     }
 
     /**
@@ -119,7 +127,19 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         validateSinkSwimArg(index);
 
         /** TODO: Your code here. */
-        return;
+        while (leftIndex(index) <= size){
+            int comNode = leftIndex(index);
+            //判断条件，如果左节点没有出数组边界，且左节值大于右节点(找子节点中小的比较)，选择
+            //小的与父节点比较，即comNode++变为右子节点
+            if (comNode < size && rightIndex(index)==min(comNode,rightIndex(index))){
+                comNode++;
+            }
+            if (index == min(index,comNode)){
+                break;
+            }
+            swap(comNode,index);
+            index = comNode;
+        }
     }
 
     /**
@@ -132,8 +152,9 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         if (size + 1 == contents.length) {
             resize(contents.length * 2);
         }
-
         /* TODO: Your code here! */
+        contents[++size] = new Node(item, priority);
+        swim(size);
     }
 
     /**
@@ -143,7 +164,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T peek() {
         /* TODO: Your code here! */
-        return null;
+        return contents[1].item();
     }
 
     /**
@@ -158,7 +179,14 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public T removeMin() {
         /* TODO: Your code here! */
-        return null;
+        if (size ==0){
+            throw new NoSuchElementException("Priority queue underflow");
+        }
+        T res = contents[1].item();
+        contents[1] = contents[size];
+        contents[size--] = null;
+        sink(1);
+        return res;
     }
 
     /**
@@ -181,7 +209,19 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     @Override
     public void changePriority(T item, double priority) {
         /* TODO: Your code here! */
+        changePriorityHelper(item, priority, 1);
         return;
+    }
+    private void changePriorityHelper(T item, double priority,int index){
+        validateSinkSwimArg(index);
+        if (contents[index].item().equals(item)){
+            contents[index].myPriority = priority;
+            sink(index);
+            swim(index);
+            return;
+        }
+        changePriorityHelper(item, priority, leftIndex(index));
+        changePriorityHelper(item, priority, rightIndex(index));
     }
 
     /**
@@ -349,6 +389,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         pq.insert("b", 2);
         pq.insert("c", 3);
         pq.insert("d", 4);
+
         System.out.println("pq after inserting 10 items: ");
         System.out.println(pq);
         assertEquals(10, pq.size());
