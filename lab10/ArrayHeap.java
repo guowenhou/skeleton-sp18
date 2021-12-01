@@ -1,4 +1,4 @@
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
+
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
